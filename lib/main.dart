@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:stepper/icon_stepper.dart';
+import 'package:stepper/modified_stepper.dart';
 
 void main() {
   runApp(MyApp());
@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Icon Stepper Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
@@ -91,11 +91,11 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [ 
+              children: [
                 Text('Become a seller:',
                   textAlign: TextAlign.left,
                   style: const TextStyle(
-                    color: Colors.black, 
+                    color: Colors.black,
                     fontSize: 20
                   )
                 ),
@@ -124,7 +124,6 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
               )  ,)
-                
               ],
             ),
           ),
@@ -168,4 +167,44 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
+}
+
+// @override
+// Widget build(BuildContext context) {
+//   return Scaffold(
+//     appBar: AppBar(
+//       title: Text('Stepper Line Demo'),
+//     ),
+//     body: Center(
+//       child: Column(
+//         mainAxisAlignment: MainAxisAlignment.center,
+//         children: <Widget>[
+//           ExampleView(),
+//         ],
+//       ),
+//     ),
+//   );
+// }
+
+Widget getInnerElementOfStepper(index) {
+  if (index + 1 < 2) {
+    return Icon(
+      Icons.check,
+      color: Colors.white,
+      size: 16.0,
+    );
+  } else if (index + 1 == 2) {
+    return Center(
+      child: Text(
+        // '$curStep',
+        '',
+        style: TextStyle(
+          color: Color(0xFF24C091),
+          fontWeight: FontWeight.bold,
+          fontFamily: 'Avenir',
+        ),
+      ),
+    );
+  } else
+    return Container();
 }

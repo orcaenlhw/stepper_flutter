@@ -23,21 +23,196 @@ class NumberStepper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        alignment: Alignment.topLeft,
-        width: width,
-        height: 350,
-        margin: const EdgeInsets.only(left: 30, top: 20, right: 30, bottom: 0),
-        child: Row(
-          children: [
-            Column(
-              children: _steps(),
-            ),
-            Column(
-              children: _stepText(),
-            ),
-          ],
-        ));
+    var c_width = MediaQuery.of(context).size.width;
+    var rejected = 'this is rejected';
+      print('$c_width');
+    return
+        // Container(
+        //     alignment: Alignment.topLeft,
+        //     width: width,
+        //     margin:
+        //         const EdgeInsets.only(left: 0, top: 30, right: 0, bottom: 0),
+        //     child: SingleChildScrollView(
+        //       child: Column(
+        //         children: [
+        //           Row(
+        //               crossAxisAlignment: CrossAxisAlignment.start,
+        //               mainAxisAlignment: MainAxisAlignment.start,
+        //               children: [
+        //                 Column(
+        //                   children: _steps(),
+        //                 ),
+        //                 Column(
+        //                   crossAxisAlignment: CrossAxisAlignment.start,
+        //                   mainAxisAlignment: MainAxisAlignment.start,
+        //                   children: _stepText(context),
+        //                 ),
+        //               ]),
+        //         ],
+        //       ),
+        //     ));
+        Container(
+            alignment: Alignment.topLeft,
+            width: width,
+            margin:
+                const EdgeInsets.only(left: 0, top: 30, right: 0, bottom: 0),
+            child: SingleChildScrollView(
+                child: Column(children: [
+              Column(
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Container(
+                        margin: EdgeInsets.only(left: 18, top: 20),
+                        width: 28.0,
+                        height: 28.0,
+                        child: getInnerElementOfStepper(1),
+                        decoration: new BoxDecoration(
+                          color: Colors.amber,
+                          borderRadius:
+                              new BorderRadius.all(new Radius.circular(25.0)),
+                          border: new Border.all(
+                            color: Colors.red,
+                            width: 1.0,
+                          ),
+                        ),
+                      ),
+                      Stack(
+                        children: <Widget>[
+                          Positioned(
+                            left: 30,
+                            top: 0,
+                            bottom: 0,
+                            width: 3,
+                            child: Container(
+                                color:
+                                    Colors.orange), // replace with your image
+                          ),
+                          Padding(
+                            padding: EdgeInsets.fromLTRB(100, 0, 16, 0),
+                            child: Container(
+                              transform:
+                                  Matrix4.translationValues(0.0, -20.0, 0.0),
+                              child: Wrap(children: [
+                                Text(
+                                    'First Step'),
+                                if (rejected != '') ...[
+                                  SizedBox(
+                                    width: c_width,
+                                    height: 30,
+                                  ),
+                                  Text(
+                                    'Rejected',
+                                  ),
+                                  const SizedBox(height: 10),
+                                ]
+                              ]),
+                            ),
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Container(
+                            margin: EdgeInsets.only(left: 18),
+                            width: 28.0,
+                            height: 28.0,
+                            child: getInnerElementOfStepper(1),
+                            decoration: new BoxDecoration(
+                              color: Colors.amber,
+                              borderRadius: new BorderRadius.all(
+                                  new Radius.circular(25.0)),
+                              border: new Border.all(
+                                color: Colors.red,
+                                width: 1.0,
+                              ),
+                            ),
+                          ),
+                          Stack(
+                            children: <Widget>[
+                              Positioned(
+                                left: 30,
+                                top: 0,
+                                bottom: 5,
+                                width: 3,
+                                child: Container(
+                                    color: Colors
+                                        .orange), // replace with your image
+                              ),
+                              Padding(
+                                padding: EdgeInsets.fromLTRB(100, 0, 16, 16),
+                                child: Container(
+                                  transform: Matrix4.translationValues(
+                                      0.0, -20.0, 0.0),
+                                  child: Wrap(children: [
+                                    Text(
+                                        'Second Step')
+                                  ]),
+                                ),
+                              )
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Container(
+                            margin: EdgeInsets.only(left: 18),
+                            width: 28.0,
+                            height: 28.0,
+                            child: getInnerElementOfStepper(1),
+                            decoration: new BoxDecoration(
+                              color: Colors.amber,
+                              borderRadius: new BorderRadius.all(
+                                  new Radius.circular(25.0)),
+                              border: new Border.all(
+                                color: Colors.red,
+                                width: 1.0,
+                              ),
+                            ),
+                          ),
+                          Stack(
+                            children: <Widget>[
+                              Positioned(
+                                left: 30,
+                                top: 0,
+                                bottom: 5,
+                                width: 3,
+                                child: Container(
+                                    color: Colors
+                                        .orange), // replace with your image
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.fromLTRB(100, 0, 16, 16),
+                                child: Container(
+                                  transform: Matrix4.translationValues(
+                                      0.0, -20.0, 0.0),
+                                  child: Wrap(children: [
+                                    Text(
+                                        'Third Step'),
+                                  ]),
+                                ),
+                              )
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ])));
   }
 
   getCircleColor(i) {
@@ -74,8 +249,9 @@ class NumberStepper extends StatelessWidget {
 
     switch (i) {
       case 0:
-        stepText = 'Register your business';
-        subStepText = 'Search and claim or Add to claim';
+        stepText =
+            'Register your business to claim ownership info of your business';
+        subStepText = 'Search and claim or Add to claim for sub step text';
         break;
       case 1:
         stepText = 'Add your first product';
@@ -89,139 +265,57 @@ class NumberStepper extends StatelessWidget {
     return stepText;
   }
 
-  List<Widget> _stepText() {
+  List<Widget> _stepText(BuildContext context) {
     var listText = <Widget>[];
-    padding: const EdgeInsets.only(left: 1, top: 50);
+    double c_width = MediaQuery.of(context).size.width - 125;
+    print('$c_width');
     for (int i = 0; i < totalSteps; i++) {
-      var circleColor = getCircleColor(i);
-      var borderColor = getBorderColor(i);
-      var lineColor = getLineColor(i);
-      var title = getText(i);
-
+      String? rejected = 'Sorry, this is rejected';
       listText.add(
         Column(
           children: [
-              Container(
-              margin: const EdgeInsets.only(left: 15, top: 1),
+            Container(
+              width: c_width,
+              margin: const EdgeInsets.only(left: 15),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Header',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18.0,
+                    getText(i).toString(),
+                    style: const TextStyle(
+                      fontWeight: FontWeight.normal,
+                      fontSize: 16.0,
                     ),
                   ),
-                  Text(
-                    'Sub Header',
-                    style: TextStyle(
+                  if (rejected != '') ...[
+                    const SizedBox(height: 15),
+                    Text(
+                      'Re-submit your ownership info',
+                      style: TextStyle(
                         fontWeight: FontWeight.normal,
                         fontSize: 16.0,
-                        color: Color(0xFF666666)),
-                  ),
-                  SizedBox(height: 56),
+                        color: Colors.red,
+                      ),
+                      softWrap: true,
+                    ),
+                    const SizedBox(height: 18),
+                  ] else ...[
+                    const Text(
+                      '',
+                      style: TextStyle(
+                          fontWeight: FontWeight.normal,
+                          fontSize: 16.0,
+                          color: Colors.white),
+                    ),
+                  ],
                 ],
               ),
             ),
-            
           ],
         ),
       );
     }
     return listText;
-  }
-
-  List<Widget> _stepsold() {
-    var list = <Widget>[];
-    for (int i = 0; i < totalSteps; i++) {
-      var circleColor = getCircleColor(i);
-      var borderColor = getBorderColor(i);
-      var lineColor = getLineColor(i);
-      var title = getText(i);
-
-      list.add(
-        Container(
-          child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Container(
-            margin: const EdgeInsets.only(top: 15),
-            width: 28.0,
-            height: 28.0,
-            child: getInnerElementOfStepper(i),
-            decoration: new BoxDecoration(
-              color: circleColor,
-              borderRadius: new BorderRadius.all(new Radius.circular(25.0)),
-              border: new Border.all(
-                color: borderColor,
-                width: 1.0,
-              ),
-            ),
-          ),
-          Container(
-            margin: const EdgeInsets.only(left: 15, top: 10),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title.toString(),
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18.0,
-                  ),
-                ),
-                Text(
-                  title.toString(),
-                  style: const TextStyle(
-                      fontWeight: FontWeight.normal,
-                      fontSize: 16.0,
-                      color: Color(0xFF666666)),
-                ),
-              ],
-            ),
-          ),
-        ],
-      )));
-      if (i != totalSteps  - 1) {
-        list.add(
-          Container(
-            margin: const EdgeInsets.only(left: 12.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  height: 70,
-                  width: 2.5,
-                  color: lineColor,
-                ),
-              ],
-            ),
-          ),
-        );
-      }
-    }
-    const SizedBox(height: 50);
-    list.add(Container(
-      padding: const EdgeInsets.only(top: 50.0),
-      child: ElevatedButton(
-        onPressed: onPressed,
-        style: ElevatedButton.styleFrom(
-            padding:
-                const EdgeInsets.only(left: 30, right: 30, top: 10, bottom: 10),
-            backgroundColor: Color.fromARGB(255, 8, 147, 221),
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(28.0))),
-        child: Text(
-          '$curStep',
-          // getBtnText(curStep).toString(),
-          style: TextStyle(color: Colors.white, fontSize: 18),
-        ),
-      ),
-    ));
-    return list;
   }
 
   List<Widget> _steps() {
@@ -230,8 +324,7 @@ class NumberStepper extends StatelessWidget {
       var circleColor = getCircleColor(i);
       var borderColor = getBorderColor(i);
       var lineColor = getLineColor(i);
-      var title = getText(i);
-
+      String? rejected = 'Sorry, this is rejected';
       list.add(
         Column(children: [
           Container(
@@ -256,11 +349,19 @@ class NumberStepper extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  height: 70,
-                  width: 2.5,
-                  color: lineColor,
-                ),
+                if (rejected == '') ...[
+                  Container(
+                    height: 48,
+                    width: 2.5,
+                    color: lineColor,
+                  ),
+                ] else ...[
+                  Container(
+                    height: 83,
+                    width: 2.5,
+                    color: lineColor,
+                  ),
+                ]
               ],
             ),
           ),
